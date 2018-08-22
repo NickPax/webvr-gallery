@@ -1,0 +1,40 @@
+<html>
+
+<head>
+    <title>Gallery</title>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene>
+        <a-assets>
+
+            <a-asset-item id="gallery" src="objects/scene.gltf"></a-asset-item>
+
+        </a-assets>
+
+        <a-entity gltf-model="#gallery"></a-entity>
+
+        <a-camera position="0 0.5 0">
+            <a-cursor color="#FFffff" />
+        </a-camera>
+
+        <a-text value="Hello, A-Frame" color="#FAFAFA" position="-0.059 0.2 -3.34" scale="0.6 0.6 0.6" text="value:Charcoal and Pencil"></a-text>
+
+
+
+    </a-scene>
+
+
+    <script>  
+        // side note: move 2nd? camera in front of picture?
+        var box = document.querySelector('a-box');
+        box.addEventListener("mouseenter", function () {
+            box.setAttribute("scale",
+                {
+                    x: 0.5,
+                    y: 2,
+                    z: 5.9
+                })
+        });
+    </script>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+  <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
+  <!-- <script src="https://unpkg.com/fdist/aframe-environment-component.min.js"></script> -->
+  <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+</head>
+
+<body>
+
+  <a-scene anti-alias environment="preset: tron">
+
+    <a-assets>
+      <img id="sudoku" src="img/sudoku-path.jpg">
+      <img id="charpenc" src="img/charcpenc4.jpg" />
+      <img id="canaledge" src="img/canal-edge.jpg" />
+      <img id="sky" src="img/sky.jpg">
+
+      <a-asset id="awesome" src="objects/museum-picture/scene.gltf"></a-asset>
+
+      <a-asset-item id="gallery" src="objects/instagallery/scene.gltf"></a-asset-item>
+
+    </a-assets>
+
+    <a-entity gltf-model="#gallery" position="-22 1 -24"></a-entity>
+
+
+    <a-sky color="#ECECEC"></a-sky>
+
+    <a-entity id="rig" movement-controls="fly: true; speed: 0.4" position="-1 -0.5 9">
+      <a-entity camera position="0 2 0" "fov:90" look-controls></a-entity>
+    </a-entity>
+
+    <a-entity gltf-model="objects/museum-picture/scene.gltf" scale="0.01 0.01 0.01" position="1.949 2.28 -12.893348749345176"></a-entity>
+
+    <a-entity light="intensity:1.0;type:spot" rotation="4.8582626096499215 0.8252887664073756 -69.78293954827713"></a-entity>
+
+
+    <a-curvedimage src="#charpenc" position="-6.669807485498034 1.364 2.263" radius="5.7" theta-length="80" rotation="0 180 0"
+      height="3.0" geometry="height:2.14;thetaLength:24.35" material="">
+      <a-text color="#FAFAFA" position="1.743125254212202 -1.237 5.38473825427941" scale="0.6 0.6 0.6" text="value:Charcoal and Pencil"
+        rotation="-0.01268121238362371 -167.5148540096529 0.21025836988345095"></a-text>
+    </a-curvedimage>
+
+    <a-image src="#canaledge" position="3.22 1.758 -3.616" height=".8" width=".651" material="" geometry="" scale="3 3 3"> 
+     <a-text color="#FAFAFA" position="-0.11151574599949637 -0.44381183540420704 -0.008927731488932222" scale="0.2 0.2 0.2" text="value:Canal Edge"></a-text>
+    </a-image>
+
+
+    <a-image position="-3 10 -70" height="20.0" width="20.0" src="#sudoku"></a-image>
+
+  </a-scene>
+</body>
+
+
+
+
+
+
+
+<!-- Try changing the preset to one of default, contact, egypt, checkerboard, forest, goaland, yavapai, goldmine, 
+       threetowers, poison, arches, tron, japan, dream, volcano, starry, osiris. -->
+<!-- See more environment options: https://github.com/feiss/aframe-environment-component#parameters -->

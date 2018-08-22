@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+  <!-- <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script> -->
+  <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>  
+  <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
+  <script src="tap-to-teleport.js" type="text/javascript"></script> 
+</head>
+<body>
+<script>
+    AFRAME.registerComponent('log', {
+      schema: {type: 'string'},
+    
+      init: function () {
+        var stringToLog = this.data;
+        
+        console.log(AFRAME.utils.device.isGearVR ());
+      }
+    });
+  </script>
+
+<a-scene log="Hello, Scene!">
+      <a-entity ground
+      environment="preset:tron"
+      shadow
+    ></a-entity>
+
+    <a-assets>
+      <img id="sudoku" src="img/sudoku-path.jpg">
+      <img id="charpenc" src="img/charcpenc4.jpg" />
+      <img id="canaledge" src="img/canal-edge.jpg" />
+      <img id="sky" src="img/sky.jpg">
+
+      <a-asset id="awesome" src="objects/museum-picture/scene.gltf"></a-asset>
+
+      <a-asset-item id="gallery" src="objects/instagallery/scene.gltf"></a-asset-item>
+
+    </a-assets>
+
+    <a-entity ground gltf-model="#gallery" position="-22 1 -24"></a-entity>
+
+    <a-entity ground
+      geometry="primitive:box; width:100; depth:100; height:0.01;"
+      material="color:#333"
+      position="-5 0 -5"        
+    >
+
+
+    <a-sky color="#ECECEC"></a-sky>
+
+    <!-- <a-entity id="cameraRig" movement-controls="fly: true; speed: 0.3" position="5 3 5">
+      <a-entity camera position="-10 -0.26 0.01" "fov:90" look-controls></a-entity>
+    </a-entity> -->
+
+    <a-entity id="cameraRig" position="0 0.6 0">
+      <a-entity id="head" position="0 0 0" camera="userHeight:1.2" "fov:90" look-controls wasd-controls>
+        <a-entity position="0.1 -0.1 0"
+          touch-listener
+          teleport-controls=
+            "cameraRig: #cameraRig;
+             teleportOrigin: #head;
+             startEvents:starttouch;
+             endEvents:endtouch;
+             curveShootingSpeed:15;
+             hitCylinderRadius:1;
+             collisionEntities: [ground]"
+             gearvr-controls 
+          >
+        </a-entity>
+      </a-entity>
+    </a-entity>   
+
+
+    <a-entity ground gltf-model="objects/museum-picture/scene.gltf" scale="0.01 0.01 0.01" position="1.949 2.28 -12.893348749345176"></a-entity>
+
+    <a-entity light="intensity:1.0;type:spot" rotation="4.8582626096499215 0.8252887664073756 -69.78293954827713"></a-entity>
+
+
+    <a-curvedimage ground src="#charpenc" position="-6.669807485498034 1.364 2.263" radius="5.7" theta-length="80" rotation="0 180 0"
+      height="3.0" geometry="height:2.14;thetaLength:24.35" material="">
+      <a-text color="#FAFAFA" position="1.743125254212202 -1.237 5.38473825427941" scale="0.6 0.6 0.6" text="value:Charcoal and Pencil"
+        rotation="-0.01268121238362371 -167.5148540096529 0.21025836988345095"></a-text>
+    </a-curvedimage>
+
+    <a-image src="#canaledge" position="3.22 1.758 -3.616" height=".8" width=".651" material="" geometry="" scale="3 3 3" shadow=""
+      rotation="">
+      <a-text color="#FAFAFA" position="-0.11151574599949637 -0.44381183540420704 -0.008927731488932222" scale="0.2 0.2 0.2" text="value:Canal Edge"></a-text>
+    </a-image>
+
+
+
+    <a-image position="-3 10 -70" height="20.0" width="20.0" src="#sudoku"></a-image>
+
+
+  </a-scene>
+</body>
+
+
+
+
+
+
+
+<!-- Try changing the preset to one of default, contact, egypt, checkerboard, forest, goaland, yavapai, goldmine, 
+       threetowers, poison, arches, tron, japan, dream, volcano, starry, osiris. -->
+<!-- See more environment options: https://github.com/feiss/aframe-environment-component#parameters -->
